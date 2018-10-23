@@ -1,0 +1,311 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
+<div class="row">
+    <!--KİŞİSEL BİLGİLER-->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLER</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <app-card>
+                            <h5>Kiracı Bilgileri</h5>
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Adı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="tenantName" name="tenantName" [(ngModel)]="tenant.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Soyadı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="tenantLastname" name="tenantLastname" [(ngModel)]="tenant.surname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Borçlu Hesap Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-credit-card"></i></span>
+                                            <input type="text" id="tenantCustomerNumber" name="tenantCustomerNumber" [(ngModel)]="tenant.customerNumber" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-card>
+                            <h5>Ev Sahibi Bilgileri</h5>
+                            <form [formGroup]="residenceOwnerForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                        <div class="input-group input-group-button">
+                                            <input type="number" class="form-control" #residenceOwnerIdentity>
+                                            <span class="input-group-addon" id="basic-addon10">
+                                                <button class="btn btn-primary" (click)="getResidenceOwnerByIdentity(residenceOwnerIdentity)"><i class="icofont icofont-user-search"></i>Ara</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Adı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="residenceOwnerName" name="residenceOwnerName" [(ngModel)]="residenceOwner.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <div class="col-sm-12 input-control-label">
+                                            <label class="col-form-label">Soyadı</label>
+                                            <div class="input-group input-control">
+                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                <input type="text" id="residenceOwnerLastname" name="residenceOwnerLastname" [(ngModel)]="residenceOwner.surname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <h4 class="col-form-label">Bankalar</h4>
+                                        <select name="residenceOwnerBank" formControlName="residenceOwnerBank" class="form-control input-control">
+                                            <option value="" selected>Seçiniz</option>
+                                            <option *ngFor="let bank of banks" [value]="bank.bankCode">{{bank.bankName}}</option>
+                                        </select>
+                                        <div class="messages text-danger error label-control" *ngIf="!residenceOwnerForm.controls.residenceOwnerBank.valid">Banka seçiniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <h4 class="col-form-label">Alacaklı Hesap Numarası</h4>
+                                        <select name="residenceOwnerAccount" formControlName="residenceOwnerAccount" class="form-control input-control">
+                                            <option value="" selected>Seçiniz</option>
+                                            <option *ngFor="let account of accounts" [value]="account.accountNumber">{{account.iban}}</option>
+                                        </select>
+                                        <div class="messages text-danger error label-control" *ngIf="!residenceOwnerForm.controls.residenceOwnerAccount.valid">Hesap numarası seçiniz!</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--KİŞİSEL BİLGİLER End-->
+
+    <!--ÖDEME PLANI BİLGİLERİ-->
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">ÖDEME PLANI BİLGİLERİ</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <app-card>
+                            <form [formGroup]="paymentPlanForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Taksit Adedi</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderInstallmentCount" id="paymentOrderInstallmentCount" name="paymentOrderInstallmentCount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderInstallmentCount.valid">Taksit adedini giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Toplam Tutarı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderTotalAmount" id="paymentOrderTotalAmount" name="paymentOrderTotalAmount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderTotalAmount.valid">Toplam tutarını giriniz!</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Depozito Tutarı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderDepositAmount" id="paymentOrderDepositAmount" name="paymentOrderDepositAmount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderDepositAmount.valid">Depozito tutarını giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Komisyon Tutarı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderCommissionAmount" id="paymentOrderCommissionAmount" name="paymentOrderCommissionAmount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderCommissionAmount.valid">Komisyon tutarını giriniz!</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!--<div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">İlk Taksit Tarihi</label>
+                                        <div class="input-group">
+                                            <input class="form-control" formControlName="paymentOrderFirstInstallmentDate" id="paymentOrderFirstInstallmentDate" name="paymentOrderFirstInstallmentDate" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="firstInstallmentDate"
+                                                dateFormat="dd-MMM-yyyy">
+                                            <div class="input-group-addon bg-default" (click)="d.toggle()">
+                                                <span class="icofont icofont-ui-calendar"></span>
+                                            </div>
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderFirstInstallmentDate.valid">İlk taksit tarihini giriniz!</div>
+                                    </div>-->
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">İlk Taksit Tarihi</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-ui-calendar"></i></span>
+                                            <input type="date" formControlName="paymentOrderFirstInstallmentDate" id="paymentOrderFirstInstallmentDate" name="paymentOrderFirstInstallmentDate" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderFirstInstallmentDate.valid">İlk taksit tarihini giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--ÖDEME PLANI BİLGİLERİ End -->
+
+    <!--BİLDİRİM BİLGİLERİ-->
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">BİLDİRİM BİLGİLERİ</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <app-card>
+                            <label class="label-sub-title">Bildirim Tercihleri</label>
+                            <form [formGroup]="notificationPreferenceForm">
+                                <div class="form-group row" style="padding-top: 22px;">
+                                    <label class="col-sm-3">Ödeme Öncesi</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="SMS" formControlName="firstNotificationPreferences">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span>SMS</span>
+                                            </label>
+                                        </div>
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="E-Posta" formControlName="firstNotificationPreferences">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span>E-Posta</span>
+                                            </label>
+                                        </div>
+                                        <div class="messages text-danger" *ngIf="notificationPreferenceForm.controls.firstNotificationPreferences.valid?.required">En az bildirim kanalı seçiniz!</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row" style="padding-top: 22px;">
+                                    <label class="col-sm-3">Ödeme Sonrası</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="SMS" formControlName="lastNotificationPreferences">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span>SMS</span>
+                                            </label>
+                                        </div>
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="E-Posta" formControlName="lastNotificationPreferences">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span>E-Posta</span>
+                                            </label>
+                                        </div>
+                                        <div class="messages text-danger" *ngIf="notificationPreferenceForm.controls.lastNotificationPreferences.errors?.required">En az bildirim kanalı seçiniz!</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-card>
+                            <label class="label-sub-title">İletişim Tercihleri</label>
+                            <form [formGroup]="communicationPreferenceForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-4 input-control-label">
+                                        <label class="col-form-label">Cep Telefonu</label>
+                                    </div>
+                                    <div class="col-sm-8 input-control-label">
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-stock-mobile"></i></span>
+                                            <input type="text" formControlName="paymentOrderMobilePhone" id="paymentOrderMobilePhone" name="paymentOrderMobilePhone" class="form-control" [textMask]="{mask: mask}">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderMobilePhone.valid">Cep telefonu numarası giriniz!</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 input-control-label">
+                                        <label class="col-form-label">E-Posta</label>
+                                    </div>
+                                    <div class="col-sm-8 input-control-label">
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
+                                            <input type="email" formControlName="paymentOrderEMail" id="paymentOrderEMail" name="paymentOrderEMail" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderEMail.valid">E-Posta giriniz!</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--BİLDİRİM BİLGİLERİ End-->
+
+    <!--İŞLEM TAMAMLAMA-->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right">
+                        <button class="btn btn-danger btn-round" (click)="cancelApplication();">Vazgeç</button>
+                        <button class="btn btn-success btn-round" (click)="approveApplication();">Tamam</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--İŞLEM TAMAMLAMA End-->
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

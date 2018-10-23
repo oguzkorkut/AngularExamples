@@ -1,0 +1,235 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
+<div class="row">
+    <div class="col-sm-12">
+
+        <!-- Form wizard with validation card start -->
+        <div class="card">
+            <div class="card-header">
+                <h4 style="font-weight: bold;">Başvuru Adımları</h4>
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="wizard">
+                            <div class="multi-step-sign-up">
+                                <div id="msform">
+                                    <div id="progressbar">
+                                        <form-wizard (onStepChanged)="onStepChanged($event)" #wizardComponent>
+                                            <!--[isValid]="step1Submitted"-->
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Submitted" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next( $event)">
+                                                <fieldset class="wizard-fielset input-control-label">
+                                                    <img class="logo" src="assets/images/users_2.png" alt="logo.png">
+                                                    <h2 class="fs-title">Kişi Bilgileri</h2>
+                                                    <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
+                                                    <form [formGroup]="step1Form">
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+                                                                <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" formControlName="identityNumber" class="form-control autonumber input-control" name="identityNumber" currencyMask [(ngModel)]="identityNumber" maxlength="11" minlength="11" placeholder="T.C. Kimlik Numarası" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }"  style="width: 30%"/>
+                                                                <div class="messages text-danger error label-control" *ngIf="!step1Form.controls.identityNumber.valid">T.C. kimlik numarası giriniz!</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+                                                                <label class="col-form-label">Cep Telefonu</label>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <input id="userPhoneNumber" name="userPhoneNumber" formControlName="userPhoneNumber" [textMask]="{mask: mask}" type="text" class="form-control input-control" placeholder="Cep Telefonu" style="width: 30%"/>
+                                                                <div class="messages text-danger error label-control" *ngIf="step1Form.controls.userPhoneNumber.errors?.required">Cep telefonu numarası giriniz!</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+
+                                                            </div>
+                                                            <div class="col-sm-10" style="font-size: 10px;">
+                                                                <div class="alert alert-warning" role="alert">Kişisel verilerin işlenmesi ve Aktarılmasına ilişkin
+                                                                    <a class="btn-info btn-outline-info waves-effect md-trigger" (click)="openContractText('step1ContractText')">Aydınlatma Metni</a> 'ni Görüntülemek İçin Tıklayınız.(Onaylanmadan önce görüntülemeniz
+                                                                    gerekmektedir.)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+
+                                                            </div>
+                                                            <div class="col-sm-10" style="text-align: left !important;">
+                                                                <ui-switch id="contratCheckBox" name="contratCheckBox" [(ngModel)]="contratCheckBox" class="js-single" color="#4680ff" switchColor="#fff" size="medium" formControlName="contratCheckBox" [disabled]="!isContractRead"></ui-switch>
+                                                                <div class="messages text-danger" *ngIf="!contratCheckBox">Aydınlatma Metni'ni Okuyarak Onaylayınız!</div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                </fieldset>
+
+                                            </wizard-step>
+
+                                            <wizard-step [title]="'Kredi Talebi'" [showNext]="step2.showNext" [isValid]="step2Submitted" [showPrev]="step2.showPrev" [previousValue]="previousValueStep" [nextValue]="doneValueStep" (onNext)="onStep2Next($event)">
+                                                <fieldset class="wizard-fielset input-control-label">
+                                                    <img class="logo" src="assets/images/users_2.png" alt="logo.png">
+                                                    <h2 class="fs-title">Kredi Talebi</h2>
+                                                    <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
+                                                    <!--<app-card [title]="'Input Grid'">-->
+                                                    <app-card>
+                                                        <h4 class="sub-title" style="font-family: bold; font-size: 20px">KİMLİK BİLGİLERİ</h4>
+                                                        <form [formGroup]="step2Form">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Adı</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                                        <input type="text" id="userName" name="userName" [(ngModel)]="user.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control" placeholder="Adı">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Soyadı</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                                        <input type="text" id="userLastname" name="userLastname" [(ngModel)]="user.surname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control" placeholder="Adı">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12 input-control-label">
+                                                                    <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-barcode"></i></span>
+                                                                        <input type="text" id="userIdentity" name="userIdentity" [(ngModel)]="user.tckn" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control" placeholder="T.C. Kimlik Numarası">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="sub-title" style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLERİ</h4>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <h4 class="col-form-label">Öğrenim Durumu</h4>
+                                                                    <select name="userEducation" formControlName="userEducation" class="form-control input-control">
+                                                                        <option value="" selected>Seçiniz</option>
+                                                                        <option *ngFor="let education of educations" [value]="education.educationCode">{{education.educationDesc}}</option>
+                                                                    </select>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userEducation.valid">Öğrenim durumu seçiniz!</div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <h4 class="col-form-label">Meslek</h4>
+                                                                    <select name="userProfession" formControlName="userProfession" class="form-control input-control">
+                                                                        <option value="" selected>Seçiniz</option>
+                                                                        <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
+                                                                    </select>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userProfession.valid">Meslek seçiniz!</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Aylık Net Gelir(TL)</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-download-alt"></i></span>
+                                                                        <input type="number" formControlName="userSalary" id="userSalary" name="userSalary" class="form-control autonumber" style="width: 100%;">
+                                                                    </div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userSalary.valid ">Aylık net gelirinizi giriniz!</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <h4 class="sub-title" style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</h4>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Kira Bedeli(1 aylık)</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                                                        <input type="number" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" class="form-control autonumber">
+                                                                    </div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kira bedelini giriniz!</div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Kontrat Vadesi(Ay)</label>
+                                                                    <select name="userContractExpiry" formControlName="userContractExpiry" class="form-control input-control">
+                                                                        <option value="1" selected>1</option>
+                                                                        <option value="2" selected>2</option>
+                                                                        <option value="3" selected>3</option>
+                                                                        <option value="4" selected>4</option>
+                                                                        <option value="5" selected>5</option>
+                                                                        <option value="6" selected>6</option>
+                                                                        <option value="7" selected>7</option>
+                                                                        <option value="8" selected>8</option>
+                                                                        <option value="9" selected>9</option>
+                                                                        <option value="10" selected>10</option>
+                                                                        <option value="11" selected>11</option>
+                                                                        <option value="12" selected>12</option>
+                                                                    </select>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Komisyon Tutarı</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                                                        <input type="number" formControlName="userCommissionAmount" id="userCommissionAmount" name="userCommissionAmount" class="form-control autonumber">
+                                                                    </div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCommissionAmount.valid">Komisyon tutarını giriniz!</div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <div class="form-group row"> 
+                                                                        <div class="col-sm-6">
+                                                                            <label class="col-form-label">Depozito Tutarı</label>
+                                                                            <div class="input-group input-control">
+                                                                                <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                                                                <input type="number" formControlName="userDepositAmount" id="userDepositAmount" name="userDepositAmount" class="form-control autonumber">
+                                                                            </div>
+                                                                            <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userDepositAmount.valid">Depozito tutarını giriniz!</div>
+                                                                        </div>
+                                                                        <div class="col-sm-6" style="margin: auto;">
+                                                                            <div class="checkbox-fade fade-in-primary">
+                                                                                <label>
+                                                                                    <input type="checkbox" value="deposit" formControlName="userCalculateDeposit">
+                                                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                                    <span>Depozito hesaplansın mı?</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </app-card>
+                                                </fieldset>
+                                            </wizard-step>
+
+                                            <wizard-step [title]=" 'Sonuç' " [showPrev]="step2.showPrev " [previousValue]="previousValueStep" [nextValue]="doneValueStep" (onComplete)="onComplete($event) ">
+                                                <fieldset class="wizard-fielset ">
+                                                    <img class="logo " src="assets/images/users_2.png " alt="logo.png ">
+                                                    <h2 class="fs-title ">Başvuru Bilgisi</h2>
+                                                    <h3 class="fs-subtitle ">Başvurunuz başarılı bir şekilde alınmıştır!</h3>
+                                                </fieldset>
+                                            </wizard-step>
+                                        </form-wizard>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <app-modal-animation [modalID]=" 'step1ContractText' " [modalClass]=" 'md-effect-12' ">
+            <h3>Aydınlatma Metni</h3>
+            <div>
+                <p>XXX-XXX-YYY:</p>
+                <ul>
+                    <li><strong>XXX: </strong>yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</li>
+                    <li><strong>ZZZ: </strong> zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</li>
+                    <li><strong>TTT:  </strong> tttttttttttttt.</li>
+                </ul>
+                <button (click)="closeContractText($event,true) " class="btn btn-danger md-close ">Okudum</button>
+            </div>
+            <button (click)="closeContractText($event,false) " aria-label="Close " class="md-close-btn "><i class="icofont icofont-ui-close "></i></button>
+        </app-modal-animation>
+
+    </div>
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

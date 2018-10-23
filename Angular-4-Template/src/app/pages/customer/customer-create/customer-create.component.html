@@ -1,0 +1,203 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
+<div class="row">
+    <!--KİŞİSEL BİLGİLER-->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLER</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-6">
+                        <app-card>
+                            <h5>Kimlik Bilgileri</h5>
+                            <form [formGroup]="personelInfoForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Adı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="firstname" name="firstname" formControlName="firstname"  class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.firstname.valid">Ad giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Soyad</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="surname" name="surname" formControlName="surname" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.surname.valid">Soyad giriniz!</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="tckn" name="tckn" formControlName="tckn"  class="form-control autonumber" maxlength="11" minlength="11"/>
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.tckn.valid">T.C. kimlik numarası giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Vergi Kimlik Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="vkn" name="vkn" formControlName="vkn" class="form-control autonumber" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-card>
+                            <h5>İletişim Bilgileri</h5>
+                            <form [formGroup]="communicationInfoForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Telefon Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="phone" name="phone" formControlName="phone"  [textMask]="{mask: mask}" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="communicationInfoForm.controls.phone.errors?.required">Cep telefonu numarası giriniz!</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">E-Posta</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="email" name="email" formControlName="email" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationInfoForm.controls.email.valid">E-Posta adresi giriniz!</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--KİŞİSEL BİLGİLER End-->
+
+
+    <!--SİSTEM BİLGİLERİ-->
+    <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 style="font-family: bold; font-size: 20px">SİSTEM BİLGİLERİ</h5>
+                    <!--<span>-</span>-->
+                    <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-12">
+    
+                            <app-card>
+                                <form [formGroup]="systemInfoForm">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 input-control-label">
+                                            <label class="col-form-label">Kullanıcı Adı</label>
+                                            <div class="input-group input-control">
+                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                <input type="text" id="username" name="username" formControlName="username" class="form-control">
+                                            </div>
+                                            <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.username.valid">Kullanıcı adı giriniz!</div>
+                                        </div>
+                                        <div class="col-sm-6 input-control-label">
+                                            <h4 class="col-form-label">Meslek</h4>
+                                            <select id="profession" name="profession" formControlName="profession" class="form-control input-control">
+                                                <option value="" selected>Seçiniz</option>
+                                                <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
+                                            </select>
+                                            <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.profession.valid">Meslek seçiniz!</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 input-control-label">
+                                            <label class="col-form-label">Şifre</label>
+                                            <div class="input-group input-control">
+                                                <span class="input-group-addon"><i class="icofont icofont-ui-password"></i></span>
+                                                <input type="password" id="password" name="password" formControlName="password" class="form-control">
+                                            </div>
+                                            <div class="messages text-danger error" *ngIf="systemInfoForm.controls.password.errors?.required">Şifre giriniz!</div>
+                                        </div>
+                                        <div class="col-sm-6 input-control-label">
+                                            <div class="form-group row"> 
+                                                <div class="col-sm-6">
+                                                    <label class="col-form-label">Şifre(Tekrar)</label>
+                                                    <div class="input-group input-control">
+                                                        <span class="input-group-addon"><i class="icofont icofont-ui-password"></i></span>
+                                                        <input type="password" id="repassword" name="repassword"  formControlName="repassword"  class="form-control">
+                                                    </div>
+                                                    <div class="messages text-danger" *ngIf="systemInfoForm.controls.repassword.errors?.required">Şifre tekrarı giriniz!</div>
+                                                    <div class="messages text-danger" *ngIf="systemInfoForm.controls.repassword.errors?.equalTo">Şifre eşleşmedi</div>
+                                                </div>
+                                                <div class="col-sm-6" style="margin: auto;">
+                                                    <div class="col-sm-9">
+                                                        <div class="checkbox-fade fade-in-primary">
+                                                            <label>
+                                                                <input type="checkbox" value="smscodecb" formControlName="smscodecb">
+                                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                <span>Şifre SMS ile gönderilsin</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-fade fade-in-primary">
+                                                            <label>
+                                                                <input type="checkbox" value="epostacb" formControlName="epostacb">
+                                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                <span>Şifre E-Posta ile gönderilsin</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 input-control-label">
+                                            <label class="col-form-label">Rol</label>
+                                            <select id="roles" name="roles" formControlName="roles" class="form-control input-control">
+                                                <option value="" selected>Seçiniz</option>
+                                                <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                                            </select>
+                                            <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.roles.valid">Role seçiniz!</div>
+                                        </div>
+                                        <div class="col-sm-6 input-control-label">
+                                          
+                                        </div>
+                                    </div>
+                                </form>
+                            </app-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <!--SİSTEM BİLGİLERİ End -->
+
+    <!--İŞLEM TAMAMLAMA-->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right">
+                        <button class="btn btn-danger btn-round" (click)="cancel();">Vazgeç</button>
+                        <button class="btn btn-success btn-round" (click)="save();">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--İŞLEM TAMAMLAMA End-->
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

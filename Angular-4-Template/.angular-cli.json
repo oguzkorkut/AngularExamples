@@ -1,0 +1,78 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "project": {
+        "name": "angular-4-template"
+    },
+    "apps": [{
+        "root": "src",
+        "outDir": "dist",
+        "assets": [
+            "assets",
+            "favicon.ico"
+        ],
+        "index": "index.html",
+        "main": "main.ts",
+        "polyfills": "polyfills.ts",
+        "test": "test.ts",
+        "tsconfig": "tsconfig.app.json",
+        "testTsconfig": "tsconfig.spec.json",
+        "prefix": "app",
+        "styles": [
+            "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "../node_modules/ti-icons/css/themify-icons.css",
+            "assets/icon/icofont/css/icofont.min.css",
+            "styles.css",
+            "assets/css/styles.css",
+            "assets/css/uikit.css"
+        ],
+        "scripts": [
+            "../node_modules/jquery/dist/jquery.min.js",
+            "../node_modules/jquery.maskedinput/src/jquery.maskedinput.js",
+            "assets/js/jquery-ui/jquery-ui.min.js",
+            "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+            "../node_modules/jquery-sparkline/jquery.sparkline.min.js",
+            "assets/js/jquery-ui/angular.min.js",
+            "assets/js/jquery-ui/countUp.js",
+            "assets/js/jquery-ui/jquery.ajaxchimp.min.js",
+            "assets/js/jquery-ui/js.js",
+            "assets/js/jquery-ui/lightbox.min.js",
+            "assets/js/jquery-ui/loading-bars.js",
+            "assets/js/jquery-ui/ngTouch.min.js",
+            "assets/js/jquery-ui/particles.min.js",
+            "assets/js/jquery-ui/scripts.ang.js",
+            "assets/js/jquery-ui/slider.min.js",
+            "assets/js/jquery-ui/slideshow.min.js",
+            "assets/js/jquery-ui/slideshow-fx.min.js",
+            "assets/js/jquery-ui/uikit.min.js"
+        ],
+        "environmentSource": "environments/environment.ts",
+        "environments": {
+            "dev": "environments/environment.ts",
+            "prod": "environments/environment.prod.ts"
+        }
+    }],
+    "e2e": {
+        "protractor": {
+            "config": "./protractor.conf.js"
+        }
+    },
+    "lint": [{
+            "project": "src/tsconfig.app.json"
+        },
+        {
+            "project": "src/tsconfig.spec.json"
+        },
+        {
+            "project": "e2e/tsconfig.e2e.json"
+        }
+    ],
+    "test": {
+        "karma": {
+            "config": "./karma.conf.js"
+        }
+    },
+    "defaults": {
+        "styleExt": "css",
+        "component": {}
+    }
+}

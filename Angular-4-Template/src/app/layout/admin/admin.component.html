@@ -1,0 +1,66 @@
+<div class="wrapper">
+    <header class="uk-small-hidden header">
+        <nav class="uk-navbar header-nav">
+            <div class="uk-container uk-container-center">
+                <a class="uk-navbar-brand logo_link">
+                    <img class="uk-responsive-height logo" src="https://image.ibb.co/cu4B2b/logo_white.png" alt="">
+                </a>
+                <div class="uk-navbar-flip uk-visible-large">
+                    <ul class="uk-navbar-nav header-nav-list">
+                        <li class="header_nav_list_item">
+                            <a  click="scrollNav($event)" class="link_features header_nav_list_item_link" href="#">Features</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_offer header_nav_list_item_link" href="#">Offer</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_pricing header_nav_list_item_link" href="#">Pricing</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_clients header_nav_list_item_link" href="#">Clients</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_facts header_nav_list_item_link" href="#">Facts</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_projects header_nav_list_item_link" href="#">Projects</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_team header_nav_list_item_link" href="#">Team</a>
+                        </li>
+                        <li class="header_nav_list_item">
+                            <a click="scrollNav($event)" class="link_customers header_nav_list_item_link" href="#">Customers</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-flip uk-hidden-large header_navbar_mobile_block">
+                    <div click="toggleMobileNav($event)" class="uk-navbar-toggle header_navbar_mobile"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="uk-height-viewport uk-cover-background uk-position-relative uk-flex uk-flex-middle uk-overflow-hidden grey_overlay container">
+        <div class="uk-container uk-container-center uk-width-1-1 uk-text-center uk-position-relative container_block">
+
+            <div class="container_block">
+                <h1 class="uk-h1 container_title">SOFTWARE</h1>
+                <h2 class="uk-h2 container_subtitle">CREATIVE AGENCY</h2>
+                <div class="container_description">Sed ut perspic iatis unde omnis iste natus error sit volup tatem
+                    accusa ntium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo invent ore ab</div>
+
+                <div class="uk-position-relative uk-margin-large-bottom uk-width-1-1 container_button">
+                    <div click="scrollNav($event)" class="uk-button uk-border-rounded green_button container_button_message">Send
+                        message</div>
+                    <div click="scrollNav($event)" class="uk-button uk-border-rounded container_button_subscribe">Subscribe</div>
+                </div>
+            </div>
+
+        </div>
+        <div click="scrollNav($event)" class="uk-icon-angle-down container_arrow"></div>
+    </section>
+
+    <router-outlet>
+        <app-spinner></app-spinner>
+    </router-outlet>
+</div>
