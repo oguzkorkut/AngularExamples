@@ -6,8 +6,8 @@ import {MenuItems} from '../../shared/menu-items/menu-items';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: [
-    '../../../../assets/css/styles.css',
-    '../../../../assets/css/uikit.css'
+    '../../../assets/css/styles.css',
+    '../../../assets/css/uikit.css'
   ]
 })
 

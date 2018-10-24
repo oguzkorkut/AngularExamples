@@ -1,21 +1,3 @@
-/*@import '~ngx-toastr/toastr';*/
-
-@import '~ngx-toastr/toastr.css';
-/* 
-#toasty .toast {
-    width: auto;
-    height: 55px;
-  }
-  
-  #toasty .toast .close-button {
-    top: calc(50% - 12px);
-    opacity: 1;
-  }
-  
-  #toasty .toast .toast-text {
-    padding: 5px 35px 5px 60px;
-  }*/
-
 body {
     background-color: #f3f3f3;
     font-size: 0.875em;
@@ -56,6 +38,12 @@ ul {
         font-size: 14px;
     }
 }
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 100%;
+    }
+} 
 
 .main-body .page-wrapper {
     padding: 1.8rem;
