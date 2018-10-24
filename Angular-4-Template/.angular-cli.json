@@ -30,20 +30,7 @@
             "../node_modules/jquery.maskedinput/src/jquery.maskedinput.js",
             "assets/js/jquery-ui/jquery-ui.min.js",
             "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
-            "../node_modules/jquery-sparkline/jquery.sparkline.min.js",
-            "assets/js/jquery-ui/angular.min.js",
-            "assets/js/jquery-ui/countUp.js",
-            "assets/js/jquery-ui/jquery.ajaxchimp.min.js",
-            "assets/js/jquery-ui/js.js",
-            "assets/js/jquery-ui/lightbox.min.js",
-            "assets/js/jquery-ui/loading-bars.js",
-            "assets/js/jquery-ui/ngTouch.min.js",
-            "assets/js/jquery-ui/particles.min.js",
-            "assets/js/jquery-ui/scripts.ang.js",
-            "assets/js/jquery-ui/slider.min.js",
-            "assets/js/jquery-ui/slideshow.min.js",
-            "assets/js/jquery-ui/slideshow-fx.min.js",
-            "assets/js/jquery-ui/uikit.min.js"
+            "../node_modules/jquery-sparkline/jquery.sparkline.min.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {
