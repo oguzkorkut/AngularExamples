@@ -21,6 +21,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthGuard } from './service/auth-guard.service';
 import { UserService } from './service/user.service';
+import { ParticlesModule } from 'angular-particle';
 
 
 // AoT requires an exported function for factories
@@ -48,6 +49,7 @@ export function createTranslateLoader(http: HttpClient) {
     HttpModule,
     HttpClientModule,
     SharedModule,
+    ParticlesModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

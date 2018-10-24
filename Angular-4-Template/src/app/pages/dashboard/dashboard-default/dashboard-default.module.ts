@@ -4,6 +4,7 @@ import { DashboardDefaultComponent } from './dashboard-default.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../../shared/shared.module';
 import {ChartModule} from 'angular2-chartjs';
+import { ParticlesModule, ParticlesComponent, ParticlesDirective } from 'angular-particle';
 
 export const DashboardDefaultRoutes: Routes = [
   {
@@ -24,6 +25,14 @@ export const DashboardDefaultRoutes: Routes = [
     SharedModule,
     ChartModule
   ],
-  declarations: [DashboardDefaultComponent]
+  declarations: [
+    DashboardDefaultComponent
+  ]
 })
 export class DashboardDefaultModule { }
+
+/**
+ ,
+    ParticlesDirective,
+    ParticlesComponent
+ */
